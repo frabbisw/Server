@@ -12,7 +12,8 @@
 		
 		$query = "select * from Account where id='".$id."' and password='".$password."'";
 		$result = mysqli_query($sqlConnect, $query);
-	
+		
+		if(mysqli_num_rows($result)>0)
 		while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 		{
 			$id = $row['id'];
