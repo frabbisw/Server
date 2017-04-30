@@ -13,7 +13,10 @@
 		$longitude = $_POST["longitude"];
 		$type = $_POST["type"];
 		
-		if($type=="temp")	$query = "INSERT INTO `CheckedInPositions` (`id`, `date`, `latitute`, `longitude`, `type`) VALUES ('".$id."', '".$date."', '".$longitude."', '".$latitude."', '".$type."')";
+		if($type=="temp")	
+		{
+			$query = "INSERT INTO `CheckedInPositions` (`id`, `date`, `latitude`, `longitude`, `type`) VALUES ('".$id."', '".$date."', '".$latitude."', '".$longitude."', '".$type."')";
+		}
 
 		else	
 		{
@@ -21,13 +24,17 @@
 			$result = mysqli_query($sqlConnect, $query);
 			
 			if(mysqli_num_rows($result)==0)
-				$query = "INSERT INTO `CheckedInPositions` (`id`, `date`, `latitute`, `longitude`, `type`) VALUES ('".$id."', '".$date."', '".$longitude."', '".$latitude."', '".$type."')";
+			{
+				$query = "INSERT INTO `CheckedInPositions` (`id`, `date`, `latitude`, `longitude`, `type`) VALUES ('".$id."', '".$date."', '".$latitude."', '".$longitude."', '".$type."')";
+			}
 						
-			else $query = "UPDATE CheckedInPositions set latitute='".$latitude."' , longitude='".$longitude."', date='".$date."' WHERE id='".$id."' AND type='".$type."'";		
+			else 
+			{
+				$query = "UPDATE CheckedInPositions set latitude='".$latitude."' , longitude='".$longitude."', date='".$date."' WHERE id='".$id."' AND type='".$type."'";		
+			}
 		}
 			
 		mysqli_query($sqlConnect, $query);	
-		echo "ok";
 		
 		mysqli_close($sqlConnect);
 	}

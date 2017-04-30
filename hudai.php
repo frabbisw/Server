@@ -1,15 +1,15 @@
-<?php
+<?php	
 	error_reporting(0); 
-	if (!empty($_POST))
-	{
+	//if (!empty($_POST))
+	{		
 		$sqlConnect=mysqli_connect('localhost', 'root', '', 'mock');
-	
+		
 		if(!$sqlConnect)
 		die("Error".mysqli_connect_errno());
-	
-		$id = $_POST["id"];
-		$password = $_POST["password"];
-		$query = "select * from Account where id='".$id."' and password='".$password."'";
+		
+		$key = "rabbi";
+		
+		$query = "SELECT DISTINCT * FROM `Account` WHERE `id` LIKE '%{$key}%' or `name` LIKE '%{$key}%'";
 		$result = mysqli_query($sqlConnect, $query);
 		$rows = array();
 		
@@ -18,7 +18,8 @@
 		{
 			$rows[] = $row;
 		}
-		print json_encode($rows[0]);
+		print json_encode($rows);
+		
 		mysqli_close($sqlConnect);
 	}		
-?> 
+?>		

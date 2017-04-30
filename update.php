@@ -14,6 +14,8 @@
 		$query = "UPDATE Account SET latitude='".$latitude."' , longitude='".$longitude."' WHERE Account.id='".$id."'";
 		mysqli_query($sqlConnect, $query);
 		
+		echo "hello from server";
+		
 		mysqli_close($sqlConnect);
 	}
 ?>

@@ -8,8 +8,7 @@
 		die("Error".mysqli_connect_errno());
 	
 		$id = $_POST["id"];
-		$password = $_POST["password"];
-		$query = "select * from Account where id='".$id."' and password='".$password."'";
+		$query = "SELECT id,date,latitude,longitude,type FROM CheckedInPositions WHERE id='".$id."'";
 		$result = mysqli_query($sqlConnect, $query);
 		$rows = array();
 		
@@ -18,7 +17,7 @@
 		{
 			$rows[] = $row;
 		}
-		print json_encode($rows[0]);
+		print json_encode($rows);
 		mysqli_close($sqlConnect);
-	}		
+	}	
 ?> 
