@@ -1,16 +1,16 @@
 <?php	
 	error_reporting(0); 
 	//if (!empty($_POST))
-	{		
+	{
 		$sqlConnect=mysqli_connect('localhost', 'root', '', 'mock');
-		
+	
 		if(!$sqlConnect)
 		die("Error".mysqli_connect_errno());
+	
+		$id = $_POST["gallu"];
+			
+		$query = "SELECT msg FROM Notification WHERE id='{$id}'";		
 		
-		$key = "a";
-		$id = "rabbi";
-		
-		$query = "SELECT DISTINCT * FROM `Account`,`Friendship` WHERE (`id` LIKE '%{$key}%' or `name` LIKE '%{$key}%') and `id`<>'{$id}' ";
 		$result = mysqli_query($sqlConnect, $query);
 		$rows = array();
 		
@@ -20,7 +20,9 @@
 			$rows[] = $row;
 		}
 		print json_encode($rows);
+		$query = "DELETE FROM Notification WHERE id='{$id}'";
+		mysqli_query($sqlConnect, $query);
 		
 		mysqli_close($sqlConnect);
 	}		
-?>		
+?>

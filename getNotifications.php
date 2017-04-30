@@ -7,9 +7,10 @@
 		if(!$sqlConnect)
 		die("Error".mysqli_connect_errno());
 	
-		$key = $_POST["key"];
+		$id = $_POST["id"];
+			
+		$query = "SELECT msg FROM Notification WHERE id='{$id}'";		
 		
-		$query = "SELECT id,name,imgPath FROM Account WHERE id='{$key}'";		
 		$result = mysqli_query($sqlConnect, $query);
 		$rows = array();
 		
@@ -19,6 +20,8 @@
 			$rows[] = $row;
 		}
 		print json_encode($rows);
+		$query = "DELETE FROM Notification WHERE id='{$id}'";
+		mysqli_query($sqlConnect, $query);
 		
 		mysqli_close($sqlConnect);
 	}		
