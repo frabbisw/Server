@@ -10,7 +10,7 @@
 		$key = "a";
 		$id = "rabbi";
 		
-		$query = "SELECT DISTINCT * FROM `Account` WHERE (`id` LIKE '%{$key}%' or `name` LIKE '%{$key}%') and `id`<>'{$id}' ";
+		$query = "SELECT DISTINCT * FROM `Account`,`Friendship` WHERE (`id` LIKE '%{$key}%' or `name` LIKE '%{$key}%') and `id`<>'{$id}' ";
 		$result = mysqli_query($sqlConnect, $query);
 		$rows = array();
 		
