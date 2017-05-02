@@ -1,4 +1,4 @@
-<?php	
+<?php
 	error_reporting(0); 
 	//if (!empty($_POST))
 	{
@@ -6,23 +6,16 @@
 	
 		if(!$sqlConnect)
 		die("Error".mysqli_connect_errno());
-	
-		$id = $_POST["gallu"];
-			
-		$query = "SELECT msg FROM Notification WHERE id='{$id}'";		
 		
-		$result = mysqli_query($sqlConnect, $query);
-		$rows = array();
+		$id = 'gallu';
+		$name = 'asadullah hil';
+		$password = 'iit';
 		
-		if(mysqli_num_rows($result)>0)
-		while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-		{
-			$rows[] = $row;
-		}
-		print json_encode($rows);
-		$query = "DELETE FROM Notification WHERE id='{$id}'";
+		$query = "UPDATE Account SET name='{$name}' , password='{$password}' WHERE Account.id='{$id}'";
 		mysqli_query($sqlConnect, $query);
 		
+		echo "hello from server";
+		
 		mysqli_close($sqlConnect);
-	}		
+	}
 ?>
